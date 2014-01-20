@@ -1,2 +1,6 @@
 require "free_spider/version"
-require "free_spider/aa"
+require "free_spider/downloader"
+require "free_spider/spiders"
+require "free_spider/logger"
+require "free_spider/scheduler"
+require "free_spider/storage"
