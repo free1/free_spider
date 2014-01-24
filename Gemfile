@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in free_spider.gemspec
-gem "nokogiri"
+# 解析页面
+gem 'nokogiri'
+# 队列
+# gem 'sidekiq'
