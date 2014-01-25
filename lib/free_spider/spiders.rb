@@ -2,20 +2,22 @@
 # 用来定义特定网站的抓取和解析规则。
 
 module FreeSpider
-  class Parser
+  module Spiders
+    class Parser
 
-    def initialize(url, css, attributes)
-      @url = url
-      @css = css
-      @attributes = attributes
-    end
+      def initialize(url, css, attributes)
+        @url = url
+        @css = css
+        @attributes = attributes
+      end
 
-    def fetcher
-      html = open(@url).read
-      doc = Nokogiri::HTML(html)
-      # 找到网页中需要的内容
-      doc.css("#{@css}").map do |href|
-        href.attributes["#{@attributes}"].value
+      def fetcher
+        html = open(@url).read
+        doc = Nokogiri::HTML(html)
+        # 找到网页中需要的内容
+        doc.css("#{@css}").map do |href|
+          href.attributes["#{@attributes}"].value
+        end
       end
     end
 
