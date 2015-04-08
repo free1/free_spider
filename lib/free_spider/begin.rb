@@ -55,7 +55,7 @@ module FreeSpider
         doc.css("a").map do |href|
           # 选取内容
           title = href.attributes["title"]
-          title_content = href.attributes["title"].value unless title.nil? && @titles.include?(title)
+          title_content = href.attributes["title"].value unless title.nil?
           # 处理链接
           href = href.attributes["href"].value unless href.attributes["href"].nil?
           href = @site + href unless href.include?("#{@site}")
@@ -64,8 +64,10 @@ module FreeSpider
         end
         # 去除重复链接
         @todo.uniq
+        # 打印信息, 写入文件
         puts "#{@visited}"
-        p @titles.compact
+        p @titles.uniq.compact
+        write_results_to_file('title_out')
         crawl
       rescue OpenURI::HTTPError
         puts "404"
@@ -115,6 +117,14 @@ module FreeSpider
 
     def post_title
       @titles.uniq.compact
+    end
+
+    def write_results_to_file(file_name)
+      if File.exist?(file_name) || File.new(file_name, "w")
+        File.open(file_name, "w") do |f|
+          f.write(@titles.uniq.compact)
+        end
+      end
     end
 
   end
