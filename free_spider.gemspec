@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # 依赖的gem
-  spec.add_dependency "nokogiri"
+  spec.add_dependency "nokogiri", ">= 1.6.0"
   # spec.add_dependency "sidekiq"
 
   # 开发工具gem
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", ">= 10.1.0"
 end
