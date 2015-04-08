@@ -1,8 +1,12 @@
 # encoding = utf-8
+
 # 生成gem
 # gem build free_spider.gemspec
 # 安装gem
 # gem install free_spider
+# 提交gem
+# gem push free_spider-0.0.1.gem
+
 # 程序入口
 # require 'free_spider'
 # spider = FreeSpider::Begin.new
@@ -10,7 +14,8 @@
 #   site 'http://www.dfrobot.com.cn/'
 # end
 # spider.crawl
-#调试
+
+# 调试
 # pry -Ilib -rfree_spider
 # irb -Ilib -rfree_spider
 

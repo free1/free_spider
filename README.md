@@ -1,6 +1,6 @@
 # FreeSpider
 
-TODO: Write a gem description
+A simple spider
 
 ## Installation
 
@@ -18,7 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+require 'free_spider'
+spider = FreeSpider::Begin.new
+spider.plan do
+  site 'http://www.example.com/'
+end
+spider.crawl
+```
 
 ## Contributing
 
@@ -28,11 +35,7 @@ TODO: Write usage instructions here
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## 功能
-
-输入需要爬取的网站首页和需要抓取的内容可以得到整站的所需内容
-
-## 需要解决的问题
+## Feature
 
 * 爬取时去除除网站外的外部链接，去除一些特殊链接，如：搜索链接
 * 网站链接过多可以使用队列
