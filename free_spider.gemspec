@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = FreeSpider::VERSION
   spec.authors       = ["free"]
   spec.email         = ["747549945@qq.com"]
-  spec.description   = %q{Write a gem description}
-  spec.summary       = %q{Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{A simple spider}
+  spec.summary       = %q{A simple spider}
+  spec.homepage      = "https://github.com/free1/free_spider"
   spec.license       = "MIT"
 
   spec.files         = Dir["{lib}/**/*"]
