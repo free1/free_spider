@@ -33,7 +33,7 @@ module FreeSpider
       @todo = []
       # 已经访问过的链接
       @visited = []
-      @titles = []
+      @news_teaching_content = {}
     end
 
     # 程序制定函数，用户选择需要抓取的网页内容
@@ -57,6 +57,8 @@ module FreeSpider
         # p "================"
         # p @visited
         # p path
+
+
         doc = Nokogiri::HTML(html)
         # 抓取主要内容
         doc.css("a").map do |href|
@@ -66,14 +68,17 @@ module FreeSpider
           # 处理链接
           href = href.attributes["href"].value unless href.attributes["href"].nil?
           href = @site + href unless href.include?("#{@site}")
+          
           @todo << href
           @titles << title_content
         end
+
+
         # 去除重复链接
         @todo.uniq
         # 打印信息, 写入文件or数据库
         puts "#{@visited}"
-        p @titles.uniq.compact
+        # p @titles.uniq.compact
         write_results_to_database
         # write_results_to_file('title_out')
         crawl
@@ -129,9 +134,9 @@ module FreeSpider
       news_teaching.save
     end
 
-    def post_title
-      @titles.uniq.compact
-    end
+    # def post_title
+    #   @titles.uniq.compact
+    # end
 
     # 写入文件
     def write_results_to_file(file_name)
