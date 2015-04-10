@@ -21,8 +21,8 @@
 
 require 'open-uri'
 require 'nokogiri'
-require 'active_record'
-require 'mysql2'
+# require 'active_record'
+# require 'mysql2'
 # require 'logger'
 
 module FreeSpider
@@ -123,23 +123,10 @@ module FreeSpider
       end
     end
 
-    # 链接数据库
-    # def database_connection
-    #   puts "----database_connection-----"
-    #   ActiveRecord::Base.establish_connection(
-    #     adapter: 'mysql2',
-    #     host: 'localhost',
-    #     database: 'chuangkejiazu',
-    #     username: 'root',
-    #     password: '123'
-    #   )
-    # end
-
     # 写入mysql
     def write_results_to_database
-      # database_connection
-      # p database_connection.methods
-      
+      news_teaching = FreeSpider::Downloader::NewsTeaching.new
+      news_teaching.save
     end
 
     def post_title
