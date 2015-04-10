@@ -2,6 +2,17 @@
 
 module FreeSpider
   module Downloader
+  	ActiveRecord::Base.establish_connection(
+      adapter: 'mysql2',
+      host: 'localhost',
+      database: 'chuangkejiazu',
+      username: 'root',
+      password: '123'
+    )
+
+  	class NewsTeaching < ActiveRecord::Base
+
+  	end
 
   end
 end

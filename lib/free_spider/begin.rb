@@ -21,6 +21,8 @@
 
 require 'open-uri'
 require 'nokogiri'
+require 'active_record'
+require 'mysql2'
 # require 'logger'
 
 module FreeSpider
@@ -69,10 +71,11 @@ module FreeSpider
         end
         # 去除重复链接
         @todo.uniq
-        # 打印信息, 写入文件
+        # 打印信息, 写入文件or数据库
         puts "#{@visited}"
         p @titles.uniq.compact
-        write_results_to_file('title_out')
+        write_results_to_database
+        # write_results_to_file('title_out')
         crawl
       rescue OpenURI::HTTPError
         puts "404"
@@ -111,7 +114,7 @@ module FreeSpider
 
     # 需要爬取的网站首页
     def site(url)
-      p "-----------------"
+      puts "--------Ready---------"
       if url.empty?
         puts "URL is blank"
       else
@@ -120,10 +123,30 @@ module FreeSpider
       end
     end
 
+    # 链接数据库
+    # def database_connection
+    #   puts "----database_connection-----"
+    #   ActiveRecord::Base.establish_connection(
+    #     adapter: 'mysql2',
+    #     host: 'localhost',
+    #     database: 'chuangkejiazu',
+    #     username: 'root',
+    #     password: '123'
+    #   )
+    # end
+
+    # 写入mysql
+    def write_results_to_database
+      # database_connection
+      # p database_connection.methods
+      
+    end
+
     def post_title
       @titles.uniq.compact
     end
 
+    # 写入文件
     def write_results_to_file(file_name)
       if File.exist?(file_name) || File.new(file_name, "w")
         File.open(file_name, "w") do |f|

@@ -7,3 +7,5 @@ gem 'nokogiri'
 gem 'open_uri_redirections'
 # 队列
 # gem 'sidekiq'
+# 数据库
+gem 'mysql'
