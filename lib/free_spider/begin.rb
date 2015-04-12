@@ -58,28 +58,38 @@ module FreeSpider
         # p "================"
         # p @visited
         # p path
-
-
         doc = Nokogiri::HTML(html)
-        # 抓取主要内容
+        # 抓取链接加入爬取队列
         doc.css("a").map do |href|
+          aa
           # 选取内容
-          title = href.attributes["title"]
-          title_content = href.attributes["title"].value unless title.nil?
+          # title = href.attributes["title"]
+          # title_content = href.attributes["title"].value unless title.nil?
           # 处理链接
           href = href.attributes["href"].value unless href.attributes["href"].nil?
+          # 去除重复链接
           href = @site + href unless href.include?("#{@site}")
 
+          # 加入爬取队列
           @todo << href
-          news_teaching_content = {title: title_content, content: "ss"}
-          @news_teaching_content.merge! news_teaching_content
+        end
+
+        # 抓取主要内容
+        doc.css(".entry-content p").each do |entry_content|
+          ss
+          content = entry_content.children.to_html unless entry_content.nil?
+          p "--------content--------"
+          p content
+          # 放入将存入的内容
+          # news_teaching_content = {title: title, content: "ss"}
+          # @news_teaching_content.merge! news_teaching_content
         end
 
 
         # 去除重复链接
-        @todo.uniq
+        # @todo.uniq
         # 打印信息, 写入文件or数据库
-        puts "#{@visited}"
+        # puts "#{@visited}"
         # p @titles.uniq.compact
         write_results_to_database
         # write_results_to_file('title_out')
