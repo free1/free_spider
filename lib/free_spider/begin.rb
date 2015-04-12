@@ -61,7 +61,6 @@ module FreeSpider
         doc = Nokogiri::HTML(html)
         # 抓取链接加入爬取队列
         doc.css("a").map do |href|
-          aa
           # 选取内容
           # title = href.attributes["title"]
           # title_content = href.attributes["title"].value unless title.nil?
