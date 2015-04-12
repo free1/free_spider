@@ -29,7 +29,7 @@ module FreeSpider
 		end
 
   	class NewsTeaching < ActiveRecord::Base
-
+  		validates_presence_of :title, :content
   	end
 
   end

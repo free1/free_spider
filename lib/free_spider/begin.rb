@@ -19,6 +19,7 @@
 # pry -Ilib -rfree_spider
 # irb -Ilib -rfree_spider
 
+# coending = utf-8
 require 'open-uri'
 require 'nokogiri'
 # require 'active_record'
@@ -47,7 +48,7 @@ module FreeSpider
 
     # 查找网页中的链接
     def find_link(path)
-      p "find_link-------------------"
+      puts "--------find_link--------"
       begin
         crawl if path == nil
         html = open(path).read
@@ -68,9 +69,10 @@ module FreeSpider
           # 处理链接
           href = href.attributes["href"].value unless href.attributes["href"].nil?
           href = @site + href unless href.include?("#{@site}")
-          
+
           @todo << href
-          @titles << title_content
+          news_teaching_content = {title: title_content, content: "ss"}
+          @news_teaching_content.merge! news_teaching_content
         end
 
 
@@ -130,8 +132,12 @@ module FreeSpider
 
     # 写入mysql
     def write_results_to_database
-      news_teaching = FreeSpider::Downloader::NewsTeaching.new
-      news_teaching.save
+      news_teaching = FreeSpider::Downloader::NewsTeaching.new(@news_teaching_content)
+      if news_teaching.save
+        puts "--------save success!--------"
+      else
+        puts "--------save error!--------"
+      end
     end
 
     # def post_title
