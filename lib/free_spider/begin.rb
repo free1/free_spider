@@ -34,7 +34,7 @@ module FreeSpider
       @todo = []
       # 已经访问过的链接
       @visited = []
-      @news_teaching_content = {}
+      @news_teaching_content = []
     end
 
     # 程序制定函数，用户选择需要抓取的网页内容
@@ -77,6 +77,8 @@ module FreeSpider
         unless doc.at_css(".entry-content p").nil?
           doc.css(".entry-content p").each do |entry_content|
             content = entry_content.children.to_html unless entry_content.nil?
+            content += content
+            @news_teaching_content << content
             p "--------content--------"
             p content
             # 放入将存入的内容
