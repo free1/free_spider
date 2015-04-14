@@ -75,15 +75,23 @@ module FreeSpider
 
         # 抓取主要内容
         unless doc.at_css(".entry-content").nil?
-          doc.css(".entry-content p").each do |entry_content|
+          news_teaching_content_tmp = {}
+          doc.css(".entry-content").each do |entry_content|
             content = entry_content.children.to_html unless entry_content.nil?
-            @news_teaching_content = {content: content}
-            p "--------content--------"
-            p content
+            news_teaching_content_tmp = {content: content}
             # 放入将存入的内容
             # news_teaching_content = {title: title, content: "ss"}
             # @news_teaching_content.merge! news_teaching_content
           end
+
+          doc.css(".entry-title").each do |entry_title|
+            title = entry_title.children.to_html unless entry_title.nil?
+            title_tmp = {title: title}
+            news_teaching_content_tmp.merge! title_tmp
+          end
+          p "--------news_entry--------"
+          p news_teaching_content_tmp
+          @news_teaching_content = news_teaching_content_tmp
         end
 
 
