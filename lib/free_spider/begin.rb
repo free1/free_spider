@@ -11,7 +11,7 @@
 # require 'free_spider'
 # spider = FreeSpider::Begin.new
 # spider.plan do
-#   site 'http://www.dfrobot.com.cn/'
+#   site 'http://oszine.com/'
 # end
 # spider.crawl
 
@@ -34,7 +34,10 @@ module FreeSpider
       @todo = []
       # 已经访问过的链接
       @visited = []
+      # 暂时存放内容
       @news_teaching_content = {}
+      # 文章题目(判断是否重复)
+      @title_saved = []
     end
 
     # 程序制定函数，用户选择需要抓取的网页内容
@@ -75,23 +78,26 @@ module FreeSpider
 
         # 抓取主要内容
         unless doc.at_css(".entry-content").nil?
-          news_teaching_content_tmp = {}
-          doc.css(".entry-content").each do |entry_content|
-            content = entry_content.children.to_html unless entry_content.nil?
-            news_teaching_content_tmp = {content: content}
-            # 放入将存入的内容
-            # news_teaching_content = {title: title, content: "ss"}
-            # @news_teaching_content.merge! news_teaching_content
-          end
+          entry_title = doc.css(".entry-title").children.to_html
+          unless @title_saved.include?(entry_title)
+            @title_saved << entry_title
+            content = doc.css(".entry-content").children.to_html
+            @news_teaching_content = {title: entry_title, content: content}
 
-          doc.css(".entry-title").each do |entry_title|
-            title = entry_title.children.to_html unless entry_title.nil?
-            title_tmp = {title: title}
-            news_teaching_content_tmp.merge! title_tmp
+            # # 文章题目
+            # doc.css(".entry-title").each do |entry_title|
+            #   title = entry_title.children.to_html unless entry_title.nil?
+            #   news_teaching_content_tmp = {title: title}
+            # end
+            # # 放入将存入的内容
+            # doc.css(".entry-content").each do |entry_content|
+            #   content = entry_content.children.to_html unless entry_content.nil?
+            #   news_teaching_content_tmp.merge!({content: content})
+            # end
+            # p "--------news_entry--------"
+            # p news_teaching_content_tmp
+            # @news_teaching_content = news_teaching_content_tmp
           end
-          p "--------news_entry--------"
-          p news_teaching_content_tmp
-          @news_teaching_content = news_teaching_content_tmp
         end
 
 
