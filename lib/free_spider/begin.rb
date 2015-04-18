@@ -29,10 +29,6 @@ require 'nokogiri'
 module FreeSpider
   class Begin
 
-    def self.hi
-      p "======================"
-    end
-
     def initialize
       # 找到的链接
       @todo = []
