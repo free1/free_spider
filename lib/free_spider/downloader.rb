@@ -11,7 +11,7 @@ module FreeSpider
     # spec = Gem::Specification.find_by_name("database")
     # gem_root = spec.gem_dir
     environment = ENV['RACK_ENV'] || 'development'
-    dbconfig = YAML.load(File.read("#{Gem.path.home}/config/database.yml"))
+    dbconfig = YAML.load(File.read("#{Gem.paths.home}/config/database.yml"))
 
 		# 链接数据库
 		puts "----database_connection-----"
