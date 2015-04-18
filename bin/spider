@@ -3,3 +3,9 @@
 require 'free_spider'
 
 puts FreeSpider::Begin.hi(ARGV[0])
+
+spider = FreeSpider::Begin.new
+spider.plan do
+  site 'http://oszine.com/'
+end
+spider.crawl

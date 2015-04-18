@@ -29,7 +29,7 @@ require 'nokogiri'
 module FreeSpider
   class Begin
 
-    def hi
+    def self.hi
       p "======================"
     end
 
