@@ -10,6 +10,8 @@ module FreeSpider
     # 数据库配置文件
     # spec = Gem::Specification.find_by_name("database")
     # gem_root = spec.gem_dir
+    p "============"
+    p $LOAD_PATH
     environment = ENV['RACK_ENV'] || 'development'
     dbconfig = YAML.load(File.read("#{$LOAD_PATH.first}/config/database.yml"))
 
