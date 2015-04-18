@@ -1,6 +1,6 @@
-development:
-	adapter: 'mysql2',
-	host: 'localhost',
-	database: 'chuangkejiazu',
-	username: 'root',
-	password: '123'
+# development:
+adapter: 'mysql2',
+host: 'localhost',
+database: 'chuangkejiazu',
+username: 'root',
+password: '123'
