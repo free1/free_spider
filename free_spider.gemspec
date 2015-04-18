@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   # 依赖的gem
   spec.add_dependency "nokogiri", ">= 1.6.0"
   spec.add_dependency 'mysql2', ">= 0.3.13"
-  spec.add_dependency 'active_record'
+  # spec.add_dependency 'active_record'
   # spec.add_dependency "sidekiq"
 
   # 开发工具gem

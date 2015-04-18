@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'free_spider'
+
+puts FreeSpider::Begin.hi(ARGV[0])
