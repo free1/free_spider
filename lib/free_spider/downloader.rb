@@ -10,12 +10,19 @@ module FreeSpider
     # 数据库配置文件
     # spec = Gem::Specification.find_by_name("database")
     # gem_root = spec.gem_dir
-    environment = ENV['RACK_ENV'] || 'development'
-    dbconfig = YAML.load(File.read("#{$LOAD_PATH.first}/config/database.yml"))
+    # environment = ENV['RACK_ENV'] || 'development'
+    # dbconfig = YAML.load(File.read("#{$LOAD_PATH.first}/config/database.yml"))
 
 		# 链接数据库
 		puts "----database_connection-----"
-  	ActiveRecord::Base.establish_connection(dbconfig[environment])
+  	# ActiveRecord::Base.establish_connection(dbconfig[environment])
+    ActiveRecord::Base.establish_connection(
+      adapter: 'mysql2',
+      host: 'localhost',
+      database: 'chuangkejiazu',
+      username: 'root',
+      password: '123'
+    )
 
   	# 创建表结构
   	puts "----table_create-----"
