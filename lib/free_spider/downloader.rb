@@ -19,14 +19,14 @@ module FreeSpider
 
   	# 创建表结构
   	puts "----table_create-----"
-    ActiveRecord::Schema.define do
-		  unless ActiveRecord::Base.connection.tables.include? 'news_teachings'
-		    create_table :news_teachings do |table|
-		      table.column :title,     :string
-		      table.column :content,   :text
-		    end
-		  end
-		end
+  #   ActiveRecord::Schema.define do
+		#   unless ActiveRecord::Base.connection.tables.include? 'news_teachings'
+		#     create_table :news_teachings do |table|
+		#       table.column :title,     :string
+		#       table.column :content,   :text
+		#     end
+		#   end
+		# end
 
   	class NewsTeaching < ActiveRecord::Base
   		validates_presence_of :title, :content
