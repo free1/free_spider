@@ -15,7 +15,7 @@ module FreeSpider
 
 		# 链接数据库
 		puts "----database_connection-----"
-  	ActiveRecord::Base.establish_connection(dbconfig[environment])
+  	# ActiveRecord::Base.establish_connection(dbconfig[environment])
 
   	# 创建表结构
   	puts "----table_create-----"
