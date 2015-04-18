@@ -10,8 +10,8 @@ module FreeSpider
     # 数据库配置文件
     # spec = Gem::Specification.find_by_name("database")
     # gem_root = spec.gem_dir
-    environment = ENV['RACK_ENV'] || 'development'
-    dbconfig = YAML.load(File.read("#{Gem.paths.home}/gems/free_spider-0.0.2/lib/free_spider/config/database.yml"))
+    # environment = ENV['RACK_ENV'] || 'development'
+    # dbconfig = YAML.load(File.read("#{Gem.paths.home}/gems/free_spider-0.0.2/lib/free_spider/config/database.yml"))
 
 		# 链接数据库
 		puts "----database_connection-----"
