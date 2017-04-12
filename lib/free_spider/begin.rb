@@ -119,18 +119,19 @@ module FreeSpider
         puts "bad URI"
         crawl
       ensure
-
       end
     end
 
     # 程序开始函数
     def crawl
       path = nil
+      # 如果是访问过的链接就重新选取
       loop do
         # 选取找到的链接中的一个链接
         path = @todo.shift
+        # 链接必须存在
         break if path.nil?
-        # 如果是访问过的链接就重新选取
+        # 不能是重复链接
         break unless @visited.include?(path)
         # 去掉外部链接
         # 去掉特殊链接
