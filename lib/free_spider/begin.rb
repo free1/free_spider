@@ -125,13 +125,13 @@ module FreeSpider
     # 程序开始函数
     def crawl
       path = nil
-      # 如果是访问过的链接就重新选取
+      # 选取将要爬取的链接
       loop do
         # 选取找到的链接中的一个链接
         path = @todo.shift
-        # 链接必须存在
+        # 如果没有链接则跳出
         break if path.nil?
-        # 不能是重复链接
+        # 如果是访问过的链接就重新选取
         break unless @visited.include?(path)
         # 去掉外部链接
         # 去掉特殊链接
